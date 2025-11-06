@@ -1,52 +1,65 @@
+// src/App.jsx
+
 import React, { useState, useEffect, useRef } from 'react';
-import testimonios from './data'; 
-import Testimonial from './components/Testimonial'; 
-import Controls from './components/Controls'; 
-import './styles.css'; 
+import testimonios from './data';
+import Testimonial from './components/Testimonial';
+import Controls from './components/Controls';
+import './styles.css';
 
 export default function App() {
+  
   const [index, setIndex] = useState(0);
   const length = testimonios.length;
+
   const autoplayRef = useRef(null);
+
   const next = () => setIndex(prev => (prev + 1) % length);
   const prev = () => setIndex(prev => (prev - 1 + length) % length);
   
   const random = () => {
     let r = Math.floor(Math.random() * length);
-    
     if (r === index) {
       r = (r + 1) % length;
     }
     setIndex(r);
   };
 
-  
-  
   useEffect(() => {
-    
     autoplayRef.current = setInterval(() => {
-      setIndex(i => (i + 1) % length); 
-    }, 5000); 
+      next();
+    }, 5000);
 
-    
     return () => {
       if (autoplayRef.current) {
         clearInterval(autoplayRef.current);
       }
     };
-  }, [length]); 
+  }, [length]);
 
-  
-  
   const handleUserAction = (actionFn) => {
-    
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
     }
     actionFn();
   };
 
-  
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowRight') {
+        handleUserAction(next);
+      }
+      if (event.key === 'ArrowLeft') {
+        handleUserAction(prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [index, prev, next]); // Dependencias actualizadas
+
   return (
     <main className="app">
       <h1>Testimonios</h1>
@@ -61,7 +74,6 @@ export default function App() {
         onRandom={() => handleUserAction(random)}
       />
 
-      {/* Contador de testimonios */}
       <p className="counter">
         {index + 1} / {length}
       </p>
