@@ -1,14 +1,20 @@
-// src/App.jsx
-
 import React, { useState, useEffect, useRef } from 'react';
 import testimonios from './data';
 import Testimonial from './components/Testimonial';
 import Controls from './components/Controls';
 import './styles.css';
 
+
+const getInitialIndex = () => {
+  const savedIndex = localStorage.getItem('testimonialIndex');
+  
+  return savedIndex ? parseInt(savedIndex, 10) : 0;
+};
+
 export default function App() {
   
-  const [index, setIndex] = useState(0);
+  
+  const [index, setIndex] = useState(getInitialIndex());
   const length = testimonios.length;
 
   const autoplayRef = useRef(null);
@@ -24,6 +30,13 @@ export default function App() {
     setIndex(r);
   };
 
+  
+  
+  useEffect(() => {
+    localStorage.setItem('testimonialIndex', index);
+  }, [index]);
+
+  
   useEffect(() => {
     autoplayRef.current = setInterval(() => {
       next();
@@ -34,8 +47,9 @@ export default function App() {
         clearInterval(autoplayRef.current);
       }
     };
-  }, [length]);
+  }, [length]); 
 
+  
   const handleUserAction = (actionFn) => {
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
@@ -43,6 +57,7 @@ export default function App() {
     actionFn();
   };
 
+  
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowRight') {
@@ -58,14 +73,18 @@ export default function App() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [index, prev, next]); // Dependencias actualizadas
+    
+  }, [index, prev, next]); 
 
   return (
     <main className="app">
       <h1>Testimonios</h1>
       
       <div className="card-wrapper">
-        <Testimonial item={testimonios[index]} />
+        <Testimonial 
+          key={testimonios[index].id} 
+          item={testimonios[index]} 
+        />
       </div>
       
       <Controls

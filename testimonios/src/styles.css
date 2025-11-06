@@ -1,4 +1,4 @@
-/* --- Variables Globales --- */
+
 :root {
   --bg: #f7f7fb;
   --card: #fff;
@@ -6,7 +6,7 @@
   --muted: #666;
 }
 
-/* --- Estilos Globales (Body) --- */
+
 body {
   font-family: Inter, system-ui, sans-serif;
   background: var(--bg);
@@ -14,31 +14,32 @@ body {
   padding: 40px;
   display: flex;
   justify-content: center;
-  color: #333; /* Color de texto base más oscuro */
+  color: #333;
 }
 
-/* --- Contenedor Principal --- */
+
 .app {
   width: 100%;
-  max-width: 420px; /* Ancho máximo para móviles */
+  max-width: 420px;
   text-align: center;
 }
 
-/* Título principal (¡HECHO VISIBLE!) */
+
 .app h1 {
-  color: #2d3748; /* Color oscuro para el título */
+  color: #2d3748;
   font-weight: 600;
-  font-size: 2rem; /* Un poco más grande */
+  font-size: 2rem;
   margin-bottom: 24px;
 }
 
-/* --- Tarjeta de Testimonio --- */
+
 .testimonial-card {
   background: var(--card);
   padding: 24px;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(20, 20, 50, 0.08);
   text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .testimonial-photo {
@@ -47,61 +48,74 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 12px;
-  border: 3px solid #f0f0f0; /* Pequeño borde a la foto */
+  border: 3px solid #f0f0f0;
 }
 
-/* Nombre de la persona (¡HECHO VISIBLE!) */
+
 .testimonial-name {
   margin: 10px 0 4px;
   font-weight: 600;
-  font-size: 1.15rem; /* Más grande para jerarquía */
-  color: #1a202c; /* Color oscuro, no negro puro */
+  font-size: 1.15rem;
+  color: #1a202c;
 }
 
 .testimonial-role {
   color: var(--muted);
   font-size: 0.9rem;
-  margin: 0 0 16px; /* Más espacio antes del texto */
+  margin: 0 0 16px;
 }
 
 .testimonial-text {
   font-style: italic;
-  line-height: 1.6; /* Más espaciado de línea */
+  line-height: 1.6;
   color: #222;
-  font-size: 1rem; /* Tamaño de fuente legible */
+  font-size: 1rem;
 }
 
-/* --- Controles (Botones) --- */
+
 .controls {
-  margin-top: 20px; /* Más separación */
+  margin-top: 20px;
   display: flex;
-  gap: 12px; /* Más espacio entre botones */
+  gap: 12px;
   justify-content: center;
 }
 
 .controls button {
   border: none;
-  padding: 10px 16px; /* Botones más grandes */
+  padding: 10px 16px;
   border-radius: 8px;
   cursor: pointer;
   background: var(--card);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  color: #333; /* Color para los símbolos < > */
-  font-size: 1.1rem; /* Símbolos más grandes */
+  color: #333;
+  font-size: 1.1rem;
   font-weight: bold;
-  transition: all 0.2s ease-in-out; /* Transición suave */
+  transition: all 0.2s ease-in-out;
 }
 
-/* Efecto hover para los botones */
+
 .controls button:hover {
   background: #f9f9f9;
-  transform: translateY(-2px); /* Efecto de "levantar" */
+  transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* --- Contador --- */
+
 .counter {
-  color: #555; /* Un poco más oscuro que 'muted' */
+  color: #555;
   margin-top: 16px;
   font-size: 0.9rem;
+}
+
+
+/* --- Animación de Fade-In --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+    transform: scale(0.98); /* Sutil efecto de zoom */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
