@@ -1,10 +1,43 @@
-/* Estilos para Testimonial.jsx */
+/* --- Variables Globales --- */
+:root {
+  --bg: #f7f7fb;
+  --card: #fff;
+  --accent: #4f46e5;
+  --muted: #666;
+}
 
+/* --- Estilos Globales (Body) --- */
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  color: #333; /* Color de texto base más oscuro */
+}
+
+/* --- Contenedor Principal --- */
+.app {
+  width: 100%;
+  max-width: 420px; /* Ancho máximo para móviles */
+  text-align: center;
+}
+
+/* Título principal (¡HECHO VISIBLE!) */
+.app h1 {
+  color: #2d3748; /* Color oscuro para el título */
+  font-weight: 600;
+  font-size: 2rem; /* Un poco más grande */
+  margin-bottom: 24px;
+}
+
+/* --- Tarjeta de Testimonio --- */
 .testimonial-card {
-  background: white;
-  border-radius: 12px;
+  background: var(--card);
   padding: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(20, 20, 50, 0.08);
   text-align: center;
 }
 
@@ -14,9 +47,61 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 12px;
+  border: 3px solid #f0f0f0; /* Pequeño borde a la foto */
 }
 
+/* Nombre de la persona (¡HECHO VISIBLE!) */
 .testimonial-name {
+  margin: 10px 0 4px;
   font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 1.15rem; /* Más grande para jerarquía */
+  color: #1a202c; /* Color oscuro, no negro puro */
+}
+
+.testimonial-role {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 16px; /* Más espacio antes del texto */
+}
+
+.testimonial-text {
+  font-style: italic;
+  line-height: 1.6; /* Más espaciado de línea */
+  color: #222;
+  font-size: 1rem; /* Tamaño de fuente legible */
+}
+
+/* --- Controles (Botones) --- */
+.controls {
+  margin-top: 20px; /* Más separación */
+  display: flex;
+  gap: 12px; /* Más espacio entre botones */
+  justify-content: center;
+}
+
+.controls button {
+  border: none;
+  padding: 10px 16px; /* Botones más grandes */
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  color: #333; /* Color para los símbolos < > */
+  font-size: 1.1rem; /* Símbolos más grandes */
+  font-weight: bold;
+  transition: all 0.2s ease-in-out; /* Transición suave */
+}
+
+/* Efecto hover para los botones */
+.controls button:hover {
+  background: #f9f9f9;
+  transform: translateY(-2px); /* Efecto de "levantar" */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Contador --- */
+.counter {
+  color: #555; /* Un poco más oscuro que 'muted' */
+  margin-top: 16px;
+  font-size: 0.9rem;
 }
